@@ -1,11 +1,16 @@
-package com.garyhu.statusmodel;
+package com.garyhu.statusmodel.activity;
 
-import android.graphics.Color;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Build;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
 import android.view.View;
+
+import com.garyhu.statusmodel.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,11 +56,19 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //        ActionBar actionBar = getSupportActionBar();
 //        actionBar.hide();
+        setNotify();
+        findViewById(R.id.iv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ScrollerActivity.class));
+            }
+        });
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
+        //设置为沉浸式
         if (hasFocus && Build.VERSION.SDK_INT >= 19) {
             View decorView = getWindow().getDecorView();
             decorView.setSystemUiVisibility(
@@ -66,5 +79,18 @@ public class MainActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
+    }
+
+    public void setNotify(){
+        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        Notification notification = builder
+                .setContentTitle("这是通知标题")
+                .setContentText("这是通知内容")
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                .build();
+        manager.notify(1, notification);
     }
 }
