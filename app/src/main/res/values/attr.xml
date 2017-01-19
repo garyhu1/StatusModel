@@ -17,4 +17,8 @@
             <enum name="right_bottom_triangle" value="7"></enum>
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="MaterialTextView">
+        <attr name="maskColor" format="color" />
+    </declare-styleable>
 </resources>

@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.ScrollerActivity"/>
+        <activity android:name=".activity.MaterialActivity"/>
     </application>
 
 </manifest>

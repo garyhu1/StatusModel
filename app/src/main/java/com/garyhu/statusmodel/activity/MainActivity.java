@@ -63,6 +63,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,ScrollerActivity.class));
             }
         });
+
+        findViewById(R.id.material_view).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,MaterialActivity.class));
+            }
+        });
     }
 
     @Override
